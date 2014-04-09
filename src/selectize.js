@@ -368,12 +368,6 @@ $.extend(Selectize.prototype, {
 			e.preventDefault();
 			return false;
 		}
-
-		// Support for Enter Keypress
-		if ( e.keyCode == KEY_RETURN ) {
-			e.preventDefault();
-			this.trigger( 'enter_keypress' );
-		}
 	},
 
 	/**
@@ -428,6 +422,8 @@ $.extend(Selectize.prototype, {
 			case KEY_RETURN:
 				if (self.isOpen && self.$activeOption) {
 					self.onOptionSelect({currentTarget: self.$activeOption});
+					// Support for Enter Keypress
+					self.trigger( 'enter_keypress' );
 				}
 				e.preventDefault();
 				return;
