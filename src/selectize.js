@@ -280,7 +280,8 @@ $.extend(Selectize.prototype, {
 			'option_clear'   : 'onOptionClear',
 			'dropdown_open'  : 'onDropdownOpen',
 			'dropdown_close' : 'onDropdownClose',
-			'type'           : 'onType'
+			'type'           : 'onType',
+			'enter_keypress' : 'onEnterKeypress'
 		};
 
 		for (key in callbacks) {
@@ -366,6 +367,12 @@ $.extend(Selectize.prototype, {
 			this.createItem();
 			e.preventDefault();
 			return false;
+		}
+
+		// Support for Enter Keypress
+		if ( e.keyCode == KEY_RETURN ) {
+			e.preventDefault();
+			this.trigger( 'enter_keypress' );
 		}
 	},
 
